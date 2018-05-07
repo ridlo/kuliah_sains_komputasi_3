@@ -1,0 +1,2 @@
+gcc -lm -lGL -lGLU -lglut sem.c -o sem
+gcc -lm -lGL -lGLU -lglut sem2.c -o sem2

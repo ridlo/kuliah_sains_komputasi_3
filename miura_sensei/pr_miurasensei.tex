@@ -1,0 +1,226 @@
+\documentclass[paper=a4, fontsize=11pt]{scrartcl} 
+
+\usepackage[T1]{fontenc} 
+\usepackage[english]{babel}
+\usepackage{amsmath,amsfonts,amsthm}
+
+\usepackage{lipsum}
+
+\usepackage{graphicx}
+\usepackage{float}
+  \floatplacement{figure}{H}
+  \floatplacement{table}{H}
+  
+\usepackage{sectsty} 
+\allsectionsfont{\centering \normalfont\scshape} 
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\usepackage[labelformat=empty]{caption}
+\usepackage{color}
+\usepackage{listings}
+\lstset{ %
+language=bash,                % choose the language of the code
+basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+numbers=left,                   % where to put the line-numbers
+numberstyle=\footnotesize,      % the size of the fonts that are used for the line-numbers
+stepnumber=1,                   % the step between two line-numbers. If it is 1 each line will be numbered
+numbersep=5pt,                  % how far the line-numbers are from the code
+backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+showspaces=false,               % show spaces adding particular underscores
+showstringspaces=false,         % underline spaces within strings
+showtabs=false,                 % show tabs within strings adding particular underscores
+frame=single,           % adds a frame around the code
+tabsize=2,          % sets default tabsize to 2 spaces
+captionpos=b,           % sets the caption-position to bottom
+breaklines=true,        % sets automatic line breaking
+breakatwhitespace=false,    % sets if automatic breaks should only happen at whitespace
+escapeinside={\%*}{*)}          % if you want to add a comment within your code
+}
+\usepackage{hyperref}
+
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{Computational Science} \\ [25pt] % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.2cm] % Thin top horizontal rule
+\small Homework - Computational Experimental Science\\ % The assignment title
+%\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{\small{Ridlo W. Wibowo || 1215011069}} % Your name
+
+\date{\small \today} % Today's date or a custom date
+
+
+\begin{document}
+\maketitle % Print the title
+
+\textbf{Problem 1.}\\
+We consider the following linear inhomogeneous first order differential equation:
+\begin{equation*}
+\frac{dx(t)}{dt} = ax(t) + b(t)
+\end{equation*}
+where $a$ is a constant and $b(t)$ is an arbitrary function of $t$. The general solution of the above equation is written by
+\begin{equation*}
+x(t) = e^{at}x(0) + \int_0^t dse^{a(t-s)}b(s).
+\end{equation*}
+(1) Show that the solution Eq. (2) satisfies the differential equation Eq. (1).
+
+
+(2) Derive the general solution Eq. (2).\\
+
+
+\textbf{Answer}\\
+(1) from solution Eq. (2)
+\begin{equation*}
+\frac{dx(t)}{dt} = \frac{d}{dt} \left(e^{at}x(0) + \int_{0}^{t} dse^{a(t-s)}b(s)\right)
+\end{equation*}
+\begin{equation*}
+\frac{dx(t)}{dt} = ax(0)e^{at} + e^{a(t-t)}b(t)
+\end{equation*}
+\begin{equation*}
+\frac{dx(t)}{dt} = Ae^{at} + b(t)
+\end{equation*}
+or
+\begin{equation*}
+\frac{dx(t)}{dt} = ax(t) + b(t)
+\end{equation*}
+with A is a constant from homogeneous solution which is actually depend on the initialvalue of the problem on the general solution $x(t)$ itself.\\
+
+
+(2) Derivation of general solution Eq. (2)\\
+the solution of linear inhomogeneous first order d.e. can be obtain by method of undetermined coefficients; the general solution to the linear differential equation is the sum of the general solution of the related homogeneous equation and the particular integral.\\
+
+A linear ODE of order 1 with variable coefficients has general form:
+\begin{equation*}
+Dx(t) + f(t)x(t) = g(t)
+\end{equation*}
+where D is the differential operator. Equations of this form can be solved by multiplying the integrating factor
+\begin{equation*}
+e^{\int f(t) dt}
+\end{equation*}
+throughout to obtain
+\begin{equation*}
+Dx(t) e^{\int f(t) dt} + f(t)x(t)e^{\int f(t) dt} = g(t)e^{\int f(t) dt}
+\end{equation*}
+which simplifies due to the product rule of
+\begin{equation*}
+D(x(t) e^{\int f(t) dt}) = g(t)e^{\int f(t) dt}
+\end{equation*}
+which, on integrating both sides and solving for $x(t)$ gives:
+\begin{equation*}
+x(t) = \frac{\int g(t)e^{\int f(t) dt} dt + c}{e^{\int f(t) dt}}
+\end{equation*}
+In other words: The solution of a first-order linear ODE
+\begin{equation*}
+x^\prime(t) + f(t)x(t) = g(t)
+\end{equation*}
+with coefficients that may or may not vary with $t$, is:
+\begin{equation*}
+x = e^{-a(t)} \left(\int g(t)e^{a(t)}dt + \kappa \right)
+\end{equation*}
+where $\kappa$ is the constant integration ($\kappa = x(0)$), and
+\begin{equation*}
+a(t) = \int f(t) dt
+\end{equation*}
+in the case of $f(t)$ is constant ($-a$) and $g(t) = b(t)$, the solution become:
+\begin{eqnarray*}
+x(t) &=& e^{at}\left(\int dt e^{-at} b(t) + x(0) \right)\\
+x(t) &=& e^{at}x(0) + e^{at}\int_0^t ds e^{-as} b(s)\\
+x(t) &=& e^{at}x(0) + \int_0^t ds e^{a(t-s)} b(s)
+\end{eqnarray*}
+
+\newpage
+\textbf{Problem 2.}\\
+We consider a one-dimensional Brownian particle. The equation of motion for the particle, the Langevin equation, can be written by
+\begin{equation*}
+m\frac{dv}{dt} = -\zeta v + \delta F(t)
+\end{equation*} 
+where $m$ is the physical mass of the particle and $\zeta$ is the friction coefficient. The effect of the medium to the particle motion is described by the fluctuating force $\delta F(t)$, which has a Gaussian distribution determined by the following two moments:
+\begin{equation*}
+\langle \delta F(t) \rangle = 0, \hspace{0.5cm} \langle \delta F(t) \delta F(t^\prime) \rangle = 2B \delta (t - t^{\prime})
+\end{equation*}
+where $B$ is a constant.\\
+(1) Show that the solution of Eq. (3) is written by
+\begin{equation*}
+v(t) = e^{-\zeta t / m}v(0) + \int_0^t dt^\prime e^{-\zeta(t-t^\prime)m} \delta F(t^\prime)/m
+\end{equation*}
+(2) Show that the mean squared velocity of Brownian particle is written by
+\begin{equation*}
+\langle v(t)^2 \rangle = e^{-2 \zeta t/m}v(0)^2 + \frac{B}{\zeta m} \left(1-e^{-2\zeta t/m} \right)
+\end{equation*}
+(3) In the long time limit, the system reaches an equilibrium state at a temperature $T$. Show the following relation known as the fluctuation-dissipation theorem,
+\begin{equation*}
+B = \zeta k_B T
+\end{equation*}
+where $k_B$ is the Boltzmann constant. Briefly describe the physical meaning of the fluctuation-dissipation theorem.\\
+
+
+\textbf{Answer}\\
+(1) using the general solution from Problem 1., we can integrate the Langevin equation to get the velocity:
+\begin{eqnarray*}
+\frac{dv(t)}{dt} &=& -\frac{\zeta v}{m} + \frac{\delta F(t)}{m}\\
+v(t) &=& e^{-\zeta t/m}v(0) + \int_0^t dt^\prime e^{-\zeta(t - t^\prime)/m} \delta F(t^\prime) /m\\
+\end{eqnarray*}
+
+(2) mean squared velocity of Brownian particle, using Ornstein\---Unlenbeck's integration method
+\begin{equation*}
+\langle v(t)^2 \rangle = \langle v(t).v(t) \rangle
+\end{equation*}
+because of $\langle \delta F (t) \rangle = 0$ the cross term will be 0, and the result:
+\begin{eqnarray*}
+\langle v(t_1).v(t_2) \rangle &=& e^{-2\zeta (t_1 + t_2)/m}v(0)^2 + \langle \int_0^{t_1} dt^\prime e^{\frac{-\zeta(t_1 - t^\prime)}{m}} \delta F(t^\prime)/m \int_0^{t_2} dt^{\prime\prime} e^{\frac{-\zeta(t_2 - t^{\prime\prime})}{m}}  \delta F(t^\prime) /m \rangle \\
+&=& e^{-2\zeta (t_1 + t_2)/m}v(0)^2 + \int_0^{t_1} dt^\prime \int_0^{t_2} dt^{\prime\prime} e^{\frac{-\zeta(t_1 - t^\prime)}{m}} e^{\frac{-\zeta(t_2 - t^{\prime\prime})}{m}}  \frac{1}{m^2} 2B\delta(t^\prime - t^{\prime\prime} \rangle \\
+\end{eqnarray*}
+The term with the double integral can be simplified as follows,
+\begin{eqnarray*}
+\small
+\int_0^{t_1} dt^\prime \int_0^{t_2} dt^{\prime\prime} e^{\frac{\zeta}{m}(t^\prime + t^{\prime\prime})} \delta(t^\prime - t^{\prime\prime}) &=& \int_0^{\infty} dt^\prime \int_0^{\infty} dt^{\prime\prime} e^{\frac{\zeta}{m}(t^\prime + t^{\prime\prime})} \theta(t_1 - t^\prime)\theta(t_2 - t^{\prime\prime}) \delta (t^\prime - t^{\prime\prime})\\
+&=& \int_0^{\theta} dt^{\prime} e^{\frac{2\zeta}{m}t^\prime} \theta(t_1 - t^\prime) \theta(t_2 - t^\prime)\\
+&=& \int_0^{\min(t_1, t_2)} dt^{\prime} e^{\frac{2\zeta}{m} t^\prime}\\
+&=& \frac{m}{2\zeta} \left(e^{\frac{2\zeta}{m}\min(t_1, t_2)} - 1 \right)\\
+\end{eqnarray*}
+here $\theta(t_1 - t^\prime) \theta(t_2 - t^\prime) = \theta(\min(t_1, t_2) - t^\prime)$, by substitute above equation and using the identity $t_1 + t_2 - 2\min(t_1, t_2) = \vert t_1 - t_2 \vert$ one obtains:
+\begin{equation*}
+\langle v(t_1).v(t_2) \rangle = e^{-2\zeta (t_1 + t_2)/m}v(0)^2 + \frac{2Bm}{2\zeta m^2}(e^{\frac{-\zeta}{m}\vert t_1 - t_2 \vert} - e^{\frac{-\zeta}{m}(t_1 - t_2)})
+\end{equation*}
+in particular, for $t_1 = t_2 = t$, we can obtain the behaviour of mean squared velocity as:
+\begin{equation*}
+\langle v(t)^2 \rangle = e^{-2 \zeta t/m}v(0)^2 + \frac{B}{\zeta m} \left(1-e^{-2\zeta t/m} \right)
+\end{equation*}\\
+
+
+(3) in the long time limit, the system reaches an equilibrium state,
+\begin{eqnarray*}
+ \lim_{t \rightarrow \infty} e^{-2\zeta t/m}v(0)^2 + \frac{B}{\zeta m} \left(1-e^{-2\zeta t/m} \right) &=& \frac{B}{\zeta m} \\
+ \langle v(t)^2 \rangle &=& \frac{B}{\zeta m}\\
+ B &=& \zeta m \langle v(t)^2 \rangle \\
+ B &=& \zeta k_B T 
+\end{eqnarray*}
+that so called Einstein\---Smoluchowski relation. Fluctuation-dissipation theorem is a powerful tool in statistical physics for predicting the behavior of non-equilibrium thermodynamical systems. These systems involve the irreversible dissipation of energy into heat from their reversible thermal fluctuations at thermodynamic equilibrium.  It is quantifies the relation between the fluctuations in a system at thermal equilibrium and the response of the system to applied perturbations.
+
+On Brownian motion, random forces that cause the erratic motion of a particle in Brownian motion would also cause drag if the particle were pulled through the fluid. In other words, the fluctuation of the particle at rest has the same origin as the dissipative frictional force one must do work against, if one tries to perturb the system in a particular direction.
+
+
+\end{document}
